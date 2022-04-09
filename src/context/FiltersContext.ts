@@ -1,11 +1,7 @@
-import { createContext, Dispatch, SetStateAction } from "react"
+import { createContext } from "react"
+import { ActiveFiltersProps } from "../components/ActiveFilters"
 
-type FiltersContextState = {
-   filters: string[]
-   setFilters: Dispatch<SetStateAction<string[]>>
-}
-
-export const FiltersContext = createContext<FiltersContextState>({
+export const FiltersContext = createContext<ActiveFiltersProps>({
    filters: [],
    setFilters: () => {},
 })
