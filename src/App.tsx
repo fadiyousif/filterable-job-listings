@@ -1,24 +1,23 @@
-import React from "react";
-import "./App.css";
+import { useState } from "react"
+import { FiltersContext } from "./context/FiltersContext"
+import { ActiveFilters } from "./components/ActiveFilters"
+import { Jobs } from "./components/Jobs"
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+   const [filters, setFilters] = useState<string[]>([])
+
+   return (
+      <>
+         <header></header>
+
+         {filters.length > 0 && (
+            <ActiveFilters filters={filters} setFilters={setFilters} />
+         )}
+
+         <FiltersContext.Provider value={{ filters, setFilters }}>
+            <Jobs filters={filters} />
+         </FiltersContext.Provider>
+      </>
+   )
 }
-
-export default App;
